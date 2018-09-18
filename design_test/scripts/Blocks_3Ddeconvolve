@@ -34,3 +34,4 @@ echo $efficiency2 >> efficiencylist_B100.txt
 
 efficiency3=`python efficiency_parser.py outblock20.txt`
 echo $efficiency3 >> efficiencylist_B20.txt
+

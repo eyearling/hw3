@@ -1,0 +1,49 @@
+3dDeconvolve -nodata 300 1 -polort 2 \
+-num_stimts 3 \
+-stim_times 1 blockt.50.A.txt 'BLOCK(50)' -stim_label 1 'A' \
+-stim_times 2 blockt.50.B.txt 'BLOCK(50)' -stim_label 2 'B' \
+-stim_times 3 blockt.50.C.txt 'BLOCK(50)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>>outblock50_polort2
+
+3dDeconvolve -nodata 300 1 -polort 6 \
+-num_stimts 3 \
+-stim_times 1 blockt.50.A.txt 'BLOCK(50)' -stim_label 1 'A' \
+-stim_times 2 blockt.50.B.txt 'BLOCK(50)' -stim_label 2 'B' \
+-stim_times 3 blockt.50.C.txt 'BLOCK(50)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>>outblock50_polort6
+
+3dDeconvolve -nodata 300 1 -polort 12 \
+-num_stimts 3 \
+-stim_times 1 blockt.50.A.txt 'BLOCK(50)' -stim_label 1 'A' \
+-stim_times 2 blockt.50.B.txt 'BLOCK(50)' -stim_label 2 'B' \
+-stim_times 3 blockt.50.C.txt 'BLOCK(50)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>>outblock50_polort12
+
+
+3dDeconvolve -nodata 300 1 -polort 2 \
+-num_stimts 3 \
+-stim_times 1 blockt.20.A.txt 'BLOCK(20)' -stim_label 1 'A' \
+-stim_times 2 blockt.20.B.txt 'BLOCK(20)' -stim_label 2 'B' \
+-stim_times 3 blockt.20.C.txt 'BLOCK(20)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>>outblock20_polort2
+
+3dDeconvolve -nodata 300 1 -polort 6 \
+-num_stimts 3 \
+-stim_times 1 blockt.20.A.txt 'BLOCK(20)' -stim_label 1 'A' \
+-stim_times 2 blockt.20.B.txt 'BLOCK(20)' -stim_label 2 'B' \
+-stim_times 3 blockt.20.C.txt 'BLOCK(20)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>>outblock20_polort6
+
+3dDeconvolve -nodata 300 1 -polort 12 \
+-num_stimts 3 \
+-stim_times 1 blockt.20.A.txt 'BLOCK(20)' -stim_label 1 'A' \
+-stim_times 2 blockt.20.B.txt 'BLOCK(20)' -stim_label 2 'B' \
+-stim_times 3 blockt.20.C.txt 'BLOCK(20)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>>outblock20_polort12
+
