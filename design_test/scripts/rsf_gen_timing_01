@@ -1,0 +1,59 @@
+
+#Part 1
+
+#for each iteration do ...
+for i in `seq 500`; do 
+RSFgen \
+-nt 300 \
+-num_stimts 3 \
+-nreps 1 20 \
+-nreps 2 20 \
+-nreps 3 20 \
+-seed $i -prefix stimt_${i}_
+
+#(files look like stim_interation_condition.1D)
+#rows are 1 TR, 1 files per condition, 1 = stim on, 0 = stim off
+
+make_stim_times.py \
+-files stimt_${i}*.1D \
+-prefix stimt_${i} \
+-nt 300 \
+-tr 1 \
+-nruns 1 
+#converts to times
+#new files for times, TR condition files are kept
+
+3dDeconvolve -nodata 300 1 -polort 1 \
+-num_stimts 3 \
+-stim_times 1 stimt_${i}.01.1D 'GAM' -stim_label 1 'A' \
+-stim_times 2 stimt_${i}.02.1D 'GAM' -stim_label 2 'B' \
+-stim_times 3 stimt_${i}.03.1D 'GAM' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>> out1.txt
+
+efficiency=`python efficiency_parser.py out1.txt`
+echo $efficiency $i >> efficiencylist1.txt
+done 
+
+sort -k1 -n efficiencylist1.txt
+mv stim*.1D times
+mv efficiencylist1.txt out.txt results
+
+#re-run RSFgen with best seed : .19294 5 Middle .19644 60, .20485 1
+RSFgen \
+-nt 300 \
+-num_stimts 3 \
+-nreps 1 20 \
+-nreps 2 20 \
+-nreps 3 20 \
+-seed 1 -prefix stim1 \
+-one_file
+
+1dplot -one -png design_3.png stim1.1D
+mv design_best1*.png results
+
+
+
+
+
+

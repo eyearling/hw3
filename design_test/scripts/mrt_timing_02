@@ -1,0 +1,52 @@
+#!/bin/bash
+
+
+for i in `seq 5000`; do 
+make_random_timing.py -num_stim 3 -num_runs 1 \
+-run_time 300 \
+-stim_labels A B C \
+-num_reps 20 \
+-stim_dur 2 \
+-prefix stimt \
+-min_rest 1 -max_rest 5 \
+-seed $i 
+
+3dDeconvolve -nodata 300 1 -polort 1 \
+-num_stimts 3 \
+-stim_times 1 stimt_01_A.1D 'GAM' -stim_label 1 'A' \
+-stim_times 2 stimt_02_B.1D 'GAM' -stim_label 2 'B' \
+-stim_times 3 stimt_03_C.1D 'GAM' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>> out3.txt
+
+
+efficiency=`python efficiency_parser.py out3.txt`
+echo $efficiency $i >> efficiencylist3.txt
+done
+
+
+sort -k1 -n efficiencylist3.txt
+mv stim*.1D times
+mv 3dDeconvolve.err nodata.XtXinv.xmat nodata.xmat.1D  times
+mv out3.txt efficiencylist3.txt results
+
+#best design .18875 2
+make_random_timing.py -num_stim 3 -num_runs 1 \
+-run_time 300 \
+-stim_labels A B C \
+-num_reps 20 \
+-prefix stimt_1 \
+-stim_dur 1 \
+-seed 560 
+
+timing_tool.py -multi_timing stimt_1_*.1D \
+-multi_timing_to_events mrt_times.1d -tr 1 -multi_stim_dur 1 \
+-min_frac .5  -run_len 300
+
+1dplot -one -png designbest2.png mrt_times.1d
+mv design.2*.png results
+mv stim*.1D times
+mv 3dDeconvolve.err nodata.XtXinv.xmat nodata.xmat.1D  times
+mv out3.txt efficiencylist3.txt results
+
+

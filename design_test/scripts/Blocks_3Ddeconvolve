@@ -1,0 +1,36 @@
+#!/bin/bash
+
+3dDeconvolve -nodata 300 1 -polort 1 \
+-num_stimts 3 \
+-stim_times 1 blockt.50.A.txt 'BLOCK(50)' -stim_label 1 'A' \
+-stim_times 2 blockt.50.B.txt 'BLOCK(50)' -stim_label 2 'B' \
+-stim_times 3 blockt.50.C.txt 'BLOCK(50)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>> outblock50.txt
+
+efficiency1=`python efficiency_parser.py outblock50.txt`
+echo $efficiency1 >> efficiencylist_B50.txt
+
+
+3dDeconvolve -nodata 300 1 -polort 1 \
+-num_stimts 3 \
+-stim_times 1 blockt.100.A.txt 'BLOCK(100)' -stim_label 1 'A' \
+-stim_times 2 blockt.100.B.txt 'BLOCK(100)' -stim_label 2 'B' \
+-stim_times 3 blockt.100.C.txt 'BLOCK(100)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>> outblock100.txt
+
+efficiency2=`python efficiency_parser.py outblock100.txt`
+echo $efficiency2 >> efficiencylist_B100.txt
+
+3dDeconvolve -nodata 300 1 -polort 1 \
+-num_stimts 3 \
+-stim_times 1 blockt.20.A.txt 'BLOCK(20)' -stim_label 1 'A' \
+-stim_times 2 blockt.20.B.txt 'BLOCK(20)' -stim_label 2 'B' \
+-stim_times 3 blockt.20.C.txt 'BLOCK(20)' -stim_label 3 'C' \
+-gltsym "SYM: A -B" -gltsym "SYM: A -C" \
+>> outblock20.txt
+
+
+efficiency3=`python efficiency_parser.py outblock20.txt`
+echo $efficiency3 >> efficiencylist_B20.txt
