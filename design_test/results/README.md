@@ -1,0 +1,24 @@
+#Q1: 
+The best RSFgen design has seemingly short random stimulus presentation and the space between stimuli is not constant or particularly predictable throughout the run. However, poor RSFgen designs have lots of stimuli of the same condition presented sequentially and there seems to be a predictable pattern to the stimuli across the run. The separation between stimuli is sometimes very large (compared to the short intervals in the best design)which might be an issue when it comes to accurately modeling the hemodynamic response. 
+
+#Q2:
+The RSFgen design restricts stimulus duration to be 1 second so the timing structure shows the entire stimlus duration from onset to offset. The make_random_timing.py structure shows stimulus onset on the x axis and the duration from one stimulus onset to the next(includes rest times). The inclustion of rest with the stimulus duration ensures that the presentation of stimuli will never overlap and the ISI is allowed to vary while still being restricted to its most effective range. There is no risk of it being too short or too long. 
+
+#Q3: 
+Compared to RSFgen, the ISI's are very short but they still vary. This allows many stimuli to be presented quickly without repetition so that no unintentionally predictable patterns arise in the timing structure. 
+
+#Q4: 
+Efficient event-related designs make use of short variable interstimulus intervals. This makes stimulus presentation unpredictable and thus removes any bias due to preparation for specific conditions. When carefully randomized, the presence of one stimuli does not correlate with the sucessive presentation of any other stimuli.
+
+#Q5:
+Average efficiency increases as block duration decreases. For the 20second block design, the efficiency between contrasts is about the same(.0308, .0312) But in the 50 second block design the efficency for the contrast A-B(.0298) is higher than the A-C contrast.(.0325) This is even more pronounced in the 100 second block design where the efficiency for A-B is .0513 and for A-C it is .0894. The differences in efficiency are due to the location of the blocks relative to each other. Longer blocks tend to increase the risk of low-frequency noise contaminating the signal. 
+
+#Q6: 
+The polort function is proportional to the length of the run. It helps control for variability related to order. ALthough the efficiencies for the 50 second design ended up all being exactly the same. The efficiencies decreased as the polort increased for the 20 second block. The larger the polort value, the more signal is accounted for from stimulus presentation effects. Also, more conditions per run lowers the efficiency. So the polort function a more substantial effect on efficiency than it would on a design with fewer blocks.
+*from class: the polort function controls the filter of the data.
+
+#Q7: 
+A blocked design would be best. With so few conditions, a blocked design that alternates would be particularly powerful because it would allow for the greatest possibility to detect a difference in activation between the 2 condtions. Blocked designs are most efficient. However, a control condition should be added.
+
+#Q8: 
+An event related design would be best because there are many conditions and event related designs allow for the estimation of the time course of activation. They also allow for the complex comparisons across conditions that is often required with multiple levels of an independent variable. They allow for the presentation of many types of stimuli quickly and easily, block designs are much slower.
