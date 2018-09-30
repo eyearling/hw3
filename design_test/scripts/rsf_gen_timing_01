@@ -1,8 +1,9 @@
+#!/bin/bash
 
-#Part 1
+N=$1 #specify iteration number 
 
 #for each iteration do ...
-for i in `seq 500`; do 
+for i in `seq $N`; do 
 RSFgen \
 -nt 300 \
 -num_stimts 3 \
@@ -11,6 +12,7 @@ RSFgen \
 -nreps 3 20 \
 -seed $i -prefix stimt_${i}_
 
+#produces random sequences of stimuli for each condition 
 #(files look like stim_interation_condition.1D)
 #rows are 1 TR, 1 files per condition, 1 = stim on, 0 = stim off
 
@@ -20,8 +22,10 @@ make_stim_times.py \
 -nt 300 \
 -tr 1 \
 -nruns 1 
-#converts to times
+#converts sequences to times in seconds
 #new files for times, TR condition files are kept
+#each run is a row and each row contains a time correspondning to when that stimulus appears = stim on(1) in rsfgen
+
 
 3dDeconvolve -nodata 300 1 -polort 1 \
 -num_stimts 3 \
@@ -29,17 +33,25 @@ make_stim_times.py \
 -stim_times 2 stimt_${i}.02.1D 'GAM' -stim_label 2 'B' \
 -stim_times 3 stimt_${i}.03.1D 'GAM' -stim_label 3 'C' \
 -gltsym "SYM: A -B" -gltsym "SYM: A -C" \
->> out1.txt
+>> times/3dd_${i}.log
+#takes stim times from make_stim_times.py files (1 per condition) then convolves those times with HRF and labels conditions with letter
+#GAM specifices how Hemodynamic response gets convolved (different options)
 
-efficiency=`python efficiency_parser.py out1.txt`
-echo $efficiency $i >> efficiencylist1.txt
+efficiency=`python scripts/efficiency_parser.py times/3dd_${i}.log`
+echo "$efficiency $i" >> results/efficiencylist1.txt
 done 
 
-sort -k1 -n efficiencylist1.txt
-mv stim*.1D times
-mv efficiencylist1.txt out.txt results
 
-#re-run RSFgen with best seed : .19294 5 Middle .19644 60, .20485 1
+sort -k1 -n efficiencylist1.txt | head -n 1 
+#worst design switch head with tail
+mv stim*.1D times
+#y is whether stimulus onset (1)
+#colors are diff conditions
+
+# while more evenly spaced stimulus, RSF gen makes most efficent designs look like blocks because blocked designs are always most efficient
+
+
+#re-run RSFgen with best seed : should be .15455 383
 RSFgen \
 -nt 300 \
 -num_stimts 3 \

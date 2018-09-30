@@ -45,4 +45,4 @@ timing_tool.py -multi_timing stimt_2_*.1D \
 
 1dplot -one -png designbest3.png mrt_times2.1d
 mv design.2*.png results
-
+#results are 1, 2, 3 which is the condition

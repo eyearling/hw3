@@ -5,6 +5,7 @@
 -stim_times 3 blockt.50.C.txt 'BLOCK(50)' -stim_label 3 'C' \
 -gltsym "SYM: A -B" -gltsym "SYM: A -C" \
 >>outblock50_polort2
+#different convolve function becuase assume stimuli remain on for entire block so HRF looks different
 
 3dDeconvolve -nodata 300 1 -polort 6 \
 -num_stimts 3 \

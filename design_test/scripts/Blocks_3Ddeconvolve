@@ -34,4 +34,11 @@ echo $efficiency2 >> efficiencylist_B100.txt
 
 efficiency3=`python efficiency_parser.py outblock20.txt`
 echo $efficiency3 >> efficiencylist_B20.txt
+#average efficiency decreases for longer blocks 
+#A-B closer to each other(occur next to each other more often when their are more occurances of each coniditon-lower design frquency)
+#shorter blocks better than longer blocks
+#A-B contrasts always more efficienct than A-C becuase of location
+
+#polort function sets high pass filter: decreases unexplained variance by cutting out 1/f noise but if signal is in that region it can cut out that signal
+#dont want comparisons to be farther than 90sec aparts or too close together
 
